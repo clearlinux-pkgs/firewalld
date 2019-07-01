@@ -2,3 +2,6 @@
 # picked up automatically. One name per line, no whitespace.
 intltool-dev
 glib-dev
+docbook-xml
+docbook-utils
+libxslt

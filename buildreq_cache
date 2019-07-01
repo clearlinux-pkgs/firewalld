@@ -1,6 +1,7 @@
-0.6.3
+0.7.0
 docbook-xml
 ipset
 iptables
+libxml2-dev
 libxslt-bin
 nftables

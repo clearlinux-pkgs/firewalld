@@ -4,7 +4,7 @@
 #
 Name     : firewalld
 Version  : 0.7.0
-Release  : 5
+Release  : 6
 URL      : https://github.com/firewalld/firewalld/releases/download/v0.7.0/firewalld-0.7.0.tar.gz
 Source0  : https://github.com/firewalld/firewalld/releases/download/v0.7.0/firewalld-0.7.0.tar.gz
 Summary  : A firewall daemon with D-Bus interface providing a dynamic firewall
@@ -18,6 +18,7 @@ Requires: firewalld-man = %{version}-%{release}
 Requires: firewalld-python = %{version}-%{release}
 Requires: firewalld-python3 = %{version}-%{release}
 Requires: firewalld-services = %{version}-%{release}
+Requires: python-slip
 BuildRequires : docbook-utils
 BuildRequires : docbook-xml
 BuildRequires : gettext
@@ -114,8 +115,8 @@ services components for the firewalld package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1562011915
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1563319155
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -125,7 +126,7 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1562011915
+export SOURCE_DATE_EPOCH=1563319155
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/firewalld
 cp COPYING %{buildroot}/usr/share/package-licenses/firewalld/COPYING

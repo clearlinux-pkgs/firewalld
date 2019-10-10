@@ -4,7 +4,7 @@
 #
 Name     : firewalld
 Version  : 0.7.2
-Release  : 7
+Release  : 9
 URL      : https://github.com/firewalld/firewalld/releases/download/v0.7.2/firewalld-0.7.2.tar.gz
 Source0  : https://github.com/firewalld/firewalld/releases/download/v0.7.2/firewalld-0.7.2.tar.gz
 Summary  : A firewall daemon with D-Bus interface providing a dynamic firewall
@@ -18,7 +18,10 @@ Requires: firewalld-man = %{version}-%{release}
 Requires: firewalld-python = %{version}-%{release}
 Requires: firewalld-python3 = %{version}-%{release}
 Requires: firewalld-services = %{version}-%{release}
+Requires: dbus-python
+Requires: pygobject
 Requires: python-slip
+BuildRequires : dbus-python
 BuildRequires : docbook-utils
 BuildRequires : docbook-xml
 BuildRequires : gettext
@@ -33,7 +36,7 @@ BuildRequires : libxslt
 BuildRequires : libxslt-bin
 BuildRequires : nftables
 BuildRequires : perl(XML::Parser)
-BuildRequires : python-slip
+BuildRequires : pygobject
 BuildRequires : sed
 
 %description
@@ -117,7 +120,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570019101
+export SOURCE_DATE_EPOCH=1570737665
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -127,7 +130,7 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1570019101
+export SOURCE_DATE_EPOCH=1570737665
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/firewalld
 cp COPYING %{buildroot}/usr/share/package-licenses/firewalld/COPYING

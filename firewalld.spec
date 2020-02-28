@@ -4,10 +4,10 @@
 #
 Name     : firewalld
 Version  : 0.7.2
-Release  : 11
+Release  : 12
 URL      : https://github.com/firewalld/firewalld/releases/download/v0.7.2/firewalld-0.7.2.tar.gz
 Source0  : https://github.com/firewalld/firewalld/releases/download/v0.7.2/firewalld-0.7.2.tar.gz
-Summary  : A firewall daemon with D-Bus interface providing a dynamic firewall
+Summary  : Firewall daemon with D-Bus interface
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
 Requires: firewalld-bin = %{version}-%{release}
@@ -37,6 +37,7 @@ BuildRequires : libxslt-bin
 BuildRequires : nftables
 BuildRequires : perl(XML::Parser)
 BuildRequires : pygobject
+BuildRequires : python-slip
 BuildRequires : sed
 
 %description
@@ -114,13 +115,15 @@ services components for the firewalld package.
 
 %prep
 %setup -q -n firewalld-0.7.2
+cd %{_builddir}/firewalld-0.7.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570737665
+export SOURCE_DATE_EPOCH=1582923116
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -130,10 +133,10 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1570737665
+export SOURCE_DATE_EPOCH=1582923116
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/firewalld
-cp COPYING %{buildroot}/usr/share/package-licenses/firewalld/COPYING
+cp %{_builddir}/firewalld-0.7.2/COPYING %{buildroot}/usr/share/package-licenses/firewalld/4cc77b90af91e615a64ae04893fdffa7939db84c
 %make_install
 %find_lang firewalld
 
@@ -425,7 +428,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/firewalld/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/firewalld/COPYING
+/usr/share/package-licenses/firewalld/4cc77b90af91e615a64ae04893fdffa7939db84c
 
 %files man
 %defattr(0644,root,root,0755)

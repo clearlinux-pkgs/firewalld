@@ -4,7 +4,7 @@
 #
 Name     : firewalld
 Version  : 1.1.1
-Release  : 31
+Release  : 33
 URL      : https://github.com/firewalld/firewalld/releases/download/v1.1.1/firewalld-1.1.1.tar.gz
 Source0  : https://github.com/firewalld/firewalld/releases/download/v1.1.1/firewalld-1.1.1.tar.gz
 Summary  : A firewall daemon with D-Bus interface providing a dynamic firewall
@@ -19,6 +19,7 @@ Requires: firewalld-python = %{version}-%{release}
 Requires: firewalld-python3 = %{version}-%{release}
 Requires: firewalld-services = %{version}-%{release}
 Requires: dbus-python
+Requires: nftables
 Requires: pygobject
 Requires: python-slip
 BuildRequires : docbook-utils
@@ -115,7 +116,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1655837813
+export SOURCE_DATE_EPOCH=1655838503
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -125,7 +126,7 @@ export CXXFLAGS="$CXXFLAGS -fno-lto "
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1655837813
+export SOURCE_DATE_EPOCH=1655838503
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/firewalld
 cp %{_builddir}/firewalld-1.1.1/COPYING %{buildroot}/usr/share/package-licenses/firewalld/4cc77b90af91e615a64ae04893fdffa7939db84c

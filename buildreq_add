@@ -1,7 +1,9 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-intltool-dev
-glib-dev
-docbook-xml
 docbook-utils
+docbook-xml
+glib-dev
+intltool-dev
+ipset
+iptables
 libxslt

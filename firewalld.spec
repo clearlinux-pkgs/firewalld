@@ -4,7 +4,7 @@
 #
 Name     : firewalld
 Version  : 1.2.1
-Release  : 36
+Release  : 37
 URL      : https://github.com/firewalld/firewalld/releases/download/v1.2.1/firewalld-1.2.1.tar.gz
 Source0  : https://github.com/firewalld/firewalld/releases/download/v1.2.1/firewalld-1.2.1.tar.gz
 Summary  : A firewall daemon with D-Bus interface providing a dynamic firewall

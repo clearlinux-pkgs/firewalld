@@ -4,10 +4,10 @@
 # Using build pattern: configure
 #
 Name     : firewalld
-Version  : 1.3.1
-Release  : 40
-URL      : https://github.com/firewalld/firewalld/releases/download/v1.3.1/firewalld-1.3.1.tar.bz2
-Source0  : https://github.com/firewalld/firewalld/releases/download/v1.3.1/firewalld-1.3.1.tar.bz2
+Version  : 1.3.2
+Release  : 41
+URL      : https://github.com/firewalld/firewalld/releases/download/v1.3.2/firewalld-1.3.2.tar.bz2
+Source0  : https://github.com/firewalld/firewalld/releases/download/v1.3.2/firewalld-1.3.2.tar.bz2
 Summary  : A firewall daemon with D-Bus interface providing a dynamic firewall
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
@@ -118,15 +118,15 @@ services components for the firewalld package.
 
 
 %prep
-%setup -q -n firewalld-1.3.1
-cd %{_builddir}/firewalld-1.3.1
+%setup -q -n firewalld-1.3.2
+cd %{_builddir}/firewalld-1.3.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1681482779
+export SOURCE_DATE_EPOCH=1682269065
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
@@ -136,7 +136,7 @@ export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -f
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1681482779
+export SOURCE_DATE_EPOCH=1682269065
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/firewalld
 cp %{_builddir}/firewalld-%{version}/COPYING %{buildroot}/usr/share/package-licenses/firewalld/4cc77b90af91e615a64ae04893fdffa7939db84c || :

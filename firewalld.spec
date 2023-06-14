@@ -4,10 +4,10 @@
 # Using build pattern: configure
 #
 Name     : firewalld
-Version  : 1.3.2
-Release  : 41
-URL      : https://github.com/firewalld/firewalld/releases/download/v1.3.2/firewalld-1.3.2.tar.bz2
-Source0  : https://github.com/firewalld/firewalld/releases/download/v1.3.2/firewalld-1.3.2.tar.bz2
+Version  : 1.3.3
+Release  : 42
+URL      : https://github.com/firewalld/firewalld/releases/download/v1.3.3/firewalld-1.3.3.tar.bz2
+Source0  : https://github.com/firewalld/firewalld/releases/download/v1.3.3/firewalld-1.3.3.tar.bz2
 Summary  : A firewall daemon with D-Bus interface providing a dynamic firewall
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
@@ -118,30 +118,47 @@ services components for the firewalld package.
 
 
 %prep
-%setup -q -n firewalld-1.3.2
-cd %{_builddir}/firewalld-1.3.2
+%setup -q -n firewalld-1.3.3
+cd %{_builddir}/firewalld-1.3.3
+pushd ..
+cp -a firewalld-1.3.3 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682269065
+export SOURCE_DATE_EPOCH=1686783243
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 %configure --disable-static --with-xml-catalog=/usr/share/defaults/xml/catalog
 make  %{?_smp_mflags}
 
+unset PKG_CONFIG_PATH
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+%configure --disable-static --with-xml-catalog=/usr/share/defaults/xml/catalog
+make  %{?_smp_mflags}
+popd
 %install
-export SOURCE_DATE_EPOCH=1682269065
+export SOURCE_DATE_EPOCH=1686783243
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/firewalld
 cp %{_builddir}/firewalld-%{version}/COPYING %{buildroot}/usr/share/package-licenses/firewalld/4cc77b90af91e615a64ae04893fdffa7939db84c || :
+pushd ../buildavx2/
+%make_install_v3
+popd
 %make_install
 %find_lang firewalld
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)

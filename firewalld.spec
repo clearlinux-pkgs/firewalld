@@ -4,10 +4,10 @@
 # Using build pattern: configure
 #
 Name     : firewalld
-Version  : 1.3.3
-Release  : 42
-URL      : https://github.com/firewalld/firewalld/releases/download/v1.3.3/firewalld-1.3.3.tar.bz2
-Source0  : https://github.com/firewalld/firewalld/releases/download/v1.3.3/firewalld-1.3.3.tar.bz2
+Version  : 2.0.0
+Release  : 43
+URL      : https://github.com/firewalld/firewalld/releases/download/v2.0.0/firewalld-2.0.0.tar.bz2
+Source0  : https://github.com/firewalld/firewalld/releases/download/v2.0.0/firewalld-2.0.0.tar.bz2
 Summary  : A firewall daemon with D-Bus interface providing a dynamic firewall
 Group    : Development/Tools
 License  : GPL-2.0 GPL-2.0+
@@ -118,10 +118,10 @@ services components for the firewalld package.
 
 
 %prep
-%setup -q -n firewalld-1.3.3
-cd %{_builddir}/firewalld-1.3.3
+%setup -q -n firewalld-2.0.0
+cd %{_builddir}/firewalld-2.0.0
 pushd ..
-cp -a firewalld-1.3.3 buildavx2
+cp -a firewalld-2.0.0 buildavx2
 popd
 
 %build
@@ -129,7 +129,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1686783243
+export SOURCE_DATE_EPOCH=1687790356
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -149,7 +149,7 @@ export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 make  %{?_smp_mflags}
 popd
 %install
-export SOURCE_DATE_EPOCH=1686783243
+export SOURCE_DATE_EPOCH=1687790356
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/firewalld
 cp %{_builddir}/firewalld-%{version}/COPYING %{buildroot}/usr/share/package-licenses/firewalld/4cc77b90af91e615a64ae04893fdffa7939db84c || :
@@ -222,6 +222,7 @@ popd
 /usr/lib/firewalld/icmptypes/unknown-option.xml
 /usr/lib/firewalld/ipsets/README.md
 /usr/lib/firewalld/policies/allow-host-ipv6.xml
+/usr/lib/firewalld/services/0-AD.xml
 /usr/lib/firewalld/services/RH-Satellite-6-capsule.xml
 /usr/lib/firewalld/services/RH-Satellite-6.xml
 /usr/lib/firewalld/services/afp.xml
@@ -229,6 +230,8 @@ popd
 /usr/lib/firewalld/services/amanda-k5-client.xml
 /usr/lib/firewalld/services/amqp.xml
 /usr/lib/firewalld/services/amqps.xml
+/usr/lib/firewalld/services/anno-1602.xml
+/usr/lib/firewalld/services/anno-1800.xml
 /usr/lib/firewalld/services/apcupsd.xml
 /usr/lib/firewalld/services/audit.xml
 /usr/lib/firewalld/services/ausweisapp2.xml
@@ -249,6 +252,8 @@ popd
 /usr/lib/firewalld/services/ceph.xml
 /usr/lib/firewalld/services/cfengine.xml
 /usr/lib/firewalld/services/checkmk-agent.xml
+/usr/lib/firewalld/services/civilization-iv.xml
+/usr/lib/firewalld/services/civilization-v.xml
 /usr/lib/firewalld/services/cockpit.xml
 /usr/lib/firewalld/services/collectd.xml
 /usr/lib/firewalld/services/condor-collector.xml
@@ -269,6 +274,7 @@ popd
 /usr/lib/firewalld/services/elasticsearch.xml
 /usr/lib/firewalld/services/etcd-client.xml
 /usr/lib/firewalld/services/etcd-server.xml
+/usr/lib/firewalld/services/factorio.xml
 /usr/lib/firewalld/services/finger.xml
 /usr/lib/firewalld/services/foreman-proxy.xml
 /usr/lib/firewalld/services/foreman.xml
@@ -335,6 +341,7 @@ popd
 /usr/lib/firewalld/services/matrix.xml
 /usr/lib/firewalld/services/mdns.xml
 /usr/lib/firewalld/services/memcache.xml
+/usr/lib/firewalld/services/minecraft.xml
 /usr/lib/firewalld/services/minidlna.xml
 /usr/lib/firewalld/services/mongodb.xml
 /usr/lib/firewalld/services/mosh.xml
@@ -347,6 +354,7 @@ popd
 /usr/lib/firewalld/services/mysql.xml
 /usr/lib/firewalld/services/nbd.xml
 /usr/lib/firewalld/services/nebula.xml
+/usr/lib/firewalld/services/need-for-speed-most-wanted.xml
 /usr/lib/firewalld/services/netbios-ns.xml
 /usr/lib/firewalld/services/netdata-dashboard.xml
 /usr/lib/firewalld/services/nfs.xml
@@ -355,6 +363,7 @@ popd
 /usr/lib/firewalld/services/nrpe.xml
 /usr/lib/firewalld/services/ntp.xml
 /usr/lib/firewalld/services/nut.xml
+/usr/lib/firewalld/services/opentelemetry.xml
 /usr/lib/firewalld/services/openvpn.xml
 /usr/lib/firewalld/services/ovirt-imageio.xml
 /usr/lib/firewalld/services/ovirt-storageconsole.xml
@@ -391,6 +400,7 @@ popd
 /usr/lib/firewalld/services/samba-dc.xml
 /usr/lib/firewalld/services/samba.xml
 /usr/lib/firewalld/services/sane.xml
+/usr/lib/firewalld/services/settlers-history-collection.xml
 /usr/lib/firewalld/services/sip.xml
 /usr/lib/firewalld/services/sips.xml
 /usr/lib/firewalld/services/slp.xml
@@ -406,17 +416,23 @@ popd
 /usr/lib/firewalld/services/squid.xml
 /usr/lib/firewalld/services/ssdp.xml
 /usr/lib/firewalld/services/ssh.xml
+/usr/lib/firewalld/services/statsrv.xml
 /usr/lib/firewalld/services/steam-streaming.xml
+/usr/lib/firewalld/services/stellaris.xml
+/usr/lib/firewalld/services/stronghold-crusader.xml
+/usr/lib/firewalld/services/supertuxkart.xml
 /usr/lib/firewalld/services/svdrp.xml
 /usr/lib/firewalld/services/svn.xml
 /usr/lib/firewalld/services/syncthing-gui.xml
 /usr/lib/firewalld/services/syncthing-relay.xml
 /usr/lib/firewalld/services/syncthing.xml
 /usr/lib/firewalld/services/synergy.xml
+/usr/lib/firewalld/services/syscomlan.xml
 /usr/lib/firewalld/services/syslog-tls.xml
 /usr/lib/firewalld/services/syslog.xml
 /usr/lib/firewalld/services/telnet.xml
 /usr/lib/firewalld/services/tentacle.xml
+/usr/lib/firewalld/services/terraria.xml
 /usr/lib/firewalld/services/tftp.xml
 /usr/lib/firewalld/services/tile38.xml
 /usr/lib/firewalld/services/tinc.xml
@@ -441,7 +457,11 @@ popd
 /usr/lib/firewalld/services/xmpp-local.xml
 /usr/lib/firewalld/services/xmpp-server.xml
 /usr/lib/firewalld/services/zabbix-agent.xml
+/usr/lib/firewalld/services/zabbix-java-gateway.xml
 /usr/lib/firewalld/services/zabbix-server.xml
+/usr/lib/firewalld/services/zabbix-trapper.xml
+/usr/lib/firewalld/services/zabbix-web-service.xml
+/usr/lib/firewalld/services/zero-k.xml
 /usr/lib/firewalld/services/zerotier.xml
 /usr/lib/firewalld/zones/block.xml
 /usr/lib/firewalld/zones/dmz.xml

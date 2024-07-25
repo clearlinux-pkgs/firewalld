@@ -19,20 +19,15 @@ firewall-applet.desktop
 firewalld
 firewalld
 firewalld
-firewalld
 firewalld-sysctls.conf
 firewalld.conf
 helpers
 icmptypes
 ipsets
 logrotate.d
-logrotate.d
-modprobe.d
 modprobe.d
 policies
 services
 sysconfig
-sysconfig
 xdg
-xdg' ']'
 zones

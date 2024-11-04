@@ -3,6 +3,6 @@
 dbus-python
 ipset
 iptables
-nftables
+pypi-nftables
 pygobject
 python-slip

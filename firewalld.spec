@@ -7,7 +7,7 @@
 #
 Name     : firewalld
 Version  : 2.3.0
-Release  : 56
+Release  : 57
 URL      : https://github.com/firewalld/firewalld/releases/download/v2.3.0/firewalld-2.3.0.tar.bz2
 Source0  : https://github.com/firewalld/firewalld/releases/download/v2.3.0/firewalld-2.3.0.tar.bz2
 Summary  : A firewall daemon with D-Bus interface providing a dynamic firewall
